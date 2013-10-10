@@ -23,3 +23,28 @@
 
 ;; Tabの表示幅
 (setq-default tab-width 4)
+
+;; 行番号を表示する
+(line-number-mode t)
+;; モードラインに桁数を表示
+(column-number-mode t)
+
+;; auto-installの設定
+(when (require 'auto-install nil t)
+  ;; インストールディレクトリの設定
+  (setq auto-install-directory "~/.emacs.d/elisp/")
+  (auto-install-update-emacswiki-package-name t)
+  ;; 必要であればProxyの設定を行う
+  ;; (setq url-proxy-services '(("http" . "localhost:8339")))
+  ;; install-elispの関数を利用可能にする。
+  (auto-install-compatibility-setup))
+
+;; スタートアップページを表示しない
+(setq inhibit-startup-message t)
+
+;; パッケージ提供
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
