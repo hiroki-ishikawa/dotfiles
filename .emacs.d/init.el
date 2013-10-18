@@ -15,11 +15,13 @@
 
 ;; asciiフォントの設定
 (set-face-attribute 'default nil
-		    :family "Ubuntu mono")
+		    :family "Ubuntu mono"
+			:height 120)
 ;; 日本語フォントの設定
 (set-fontset-font
  nil 'japanese-jisx0208
- (font-spec :family "Takaoゴシック"))
+ (font-spec :family "Takaoゴシック"
+			:height 120))
 
 ;; Tabの表示幅
 (setq-default tab-width 4)
@@ -47,4 +49,11 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
+
+;; auto-completeの設定
+(when (require 'auto-complete-config nil t)
+  (add-to-list 'ac-dictionary-directories
+			   "~/.emacs.d/elisp/ac-dict")
+  (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+  (ac-config-default))
 
