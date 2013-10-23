@@ -57,3 +57,9 @@
   (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
   (ac-config-default))
 
+;; emmet-modeの設定
+(require 'emmet-mode)
+(add-hook 'sgml-mode-hook 'emmet-mode)  ; マークアップ言語全体
+(add-hook 'css-mode-hook 'emmet-mode)   ; CSSに使う
+(add-hook 'emmet-mode-hook (lambda () (setq emmet-identation 4))) ; スペース４個
+(setq emmet-move-cursor-between-quotes t) ; 最初のクオートにカーソルをぶちこむ
